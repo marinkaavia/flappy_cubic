@@ -1,8 +1,18 @@
+#startScreen {
+    margin-top: 30px;
+    top: 0;
+    left: 0;
+    width: 896px;
+    height: 512px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    margin-left: 15px;
+}
 
 
 #board {
+    margin-top: 30px;
     background-image: url(back3.png);
-    border: 1px solid black; /* Optional, just for visibility */
 }
 
 .jersey-15-regular {
@@ -11,23 +21,22 @@
     font-style: normal;
   }
 
-  /*-- Sign Styles --*/
-  
-  .sign {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: "Vibur", cursive;
-  
-    span {
-      font-size: 5.6rem;
-      text-align: center;
-      line-height: 1;
-      color: #c6e2ff;
-      animation: neon .08s ease-in-out infinite alternate;
+/* animations */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
     }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
-  }
-  
+#dogImage1 {
+    cursor: pointer;
+    transition: transform 3s ease-in-out; /* Smooth transition for other transformations */
+}
+
+#dogImage1.rotated {
+    transform: rotate(360deg); /* Direct transformation, removed animation for clarity */
+}
+

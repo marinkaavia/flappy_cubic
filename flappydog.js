@@ -55,11 +55,10 @@ window.onload = function() {
     topPipeImage.src = "./toppipe.png";
     bottomPipeImage = new Image();
     bottomPipeImage.src = "./bottompipe.png";
-    
+    createStartScreen(); //start screen
     requestAnimationFrame(update);
     setInterval(placePipes, 3000); //placing pipes every 3 seconds
     document.addEventListener("keydown", moveCubic); //every time user touches "space"
-
 }
 
 function update() {
