@@ -1,9 +1,7 @@
-body {
-    text-align: center;
-}
+
 
 #board {
-    background-image: url(back1.png);
+    background-image: url(back3.png);
     border: 1px solid black; /* Optional, just for visibility */
 }
 
@@ -12,3 +10,24 @@ body {
     font-weight: 400;
     font-style: normal;
   }
+
+  /*-- Sign Styles --*/
+  
+  .sign {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Vibur", cursive;
+  
+    span {
+      font-size: 5.6rem;
+      text-align: center;
+      line-height: 1;
+      color: #c6e2ff;
+      animation: neon .08s ease-in-out infinite alternate;
+    }
+
+  }
+  
