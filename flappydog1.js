@@ -34,6 +34,8 @@ let bottomPipeImage;
 
 let gameOver = false; //status
 let score = 0;
+let pipeInterval;
+
 
 //movement physics
 let speedX = -2; //this is the speed of pipes that have to move from the right to the left, hence the negative
@@ -62,26 +64,29 @@ window.onload = function() {
     bottomPipeImage = new Image();
     bottomPipeImage.src = "./bottompipe.png";
     createStartScreen(); //start screen
-
-    //all for left side rotation
-    var dogImage1 = document.getElementById('dogImage1');
-    var displayText = document.getElementById('displayText');
-
-    dogImage1.onclick = function() {
-        this.classList.add('rotated');  // This should trigger CSS rotation
-        displayText.style.display = 'block';  // Display the hidden text
-
-        // Optional: Reset the image rotation for subsequent clicks
-        setTimeout(() => {
-            this.classList.remove('rotated');
-        }, 2100);  // Allow a little more time than the animation to reset
-    };
-}
+        //all for left side rotation
+        var dogImage1 = document.getElementById('dogImage1');
+        var displayText = document.getElementById('displayText');
+    
+        dogImage1.onclick = function() {
+            this.classList.add('rotated');  // This should trigger CSS rotation
+            displayText.style.display = 'block';  // Display the hidden text
+    
+            // Optional: Reset the image rotation for subsequent clicks
+            setTimeout(() => {
+                this.classList.remove('rotated');
+            }, 2100);  // Allow a little more time than the animation to reset
+        };
+    }
+    
 
 function startGame(mode) {
     startScreen.innerHTML = `
         <h1 style = "color: white; margin-top: 100px; margin-right: 140px; margin-left: 140px">You chose ${mode} mode. To start the game click the button below</h1>
-        <button onclick="initGame()">Start</button>
+        <h2 style="color:rgb(191, 240, 255);">Rules:</h2>
+        <h3 style="color:rgb(0, 221, 255);; margin-right: 50px; margin-left: 50px">Guide the flapping dog through a series of pipes without touching them. The longer you keep the dog flying, the higher your score!</h3>
+        <h3 style="color:rgb(0, 221, 255);; margin-right: 50px; margin-left: 50px">Tap space, button up or X to make the dog rise. If you stop clicking, the dog will fall due to gravity</h3>
+        <button onclick="initGame()" style = "font-size: 20px;">Start</button>
     `;
     setupGameMode(mode);
 }
@@ -91,23 +96,27 @@ function setupGameMode(mode) {
         case 'Easy':
             speedX = -2; // Slower pipes
             gravity = 0.5; // Lower gravity
+            pipeInterval = 3000; // New pipe every 3000 ms
             break;
         case 'Medium':
             speedX = -4; // Default speed
             gravity = 0.8; // Default gravity
+            pipeInterval = 1500; // New pipe every 2000 ms
             break;
         case 'Hard':
             speedX = -6; // Faster pipes
             gravity = 1; // Higher gravity
+            pipeInterval = 900; // New pipe every 1000 ms
             break;
     }
 }
+
 
 function initGame() {
     document.getElementById('startScreen').style.display = 'none'; // Hide the start screen
     context = board.getContext("2d"); //for drawing on screen
     requestAnimationFrame(update);
-    setInterval(placePipes, 3000);
+    setInterval(placePipes, pipeInterval);
     document.addEventListener("keydown", moveCubic);
 }
 
@@ -115,6 +124,7 @@ function initGame() {
 function update() {
     requestAnimationFrame(update);
     if (gameOver == true) {
+        showGameOverScreen();
         return; //stop updating
     }
     context.clearRect(0, 0, board.width, board.height); // Clear the entire canvas
@@ -179,13 +189,6 @@ function placePipes() {
 function moveCubic(e) {
     if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
         speedY = -6; // Jump up
-
-        if (gameOver) {
-            dog.y = dogY;
-            pipeArray = [];
-            score = 0;
-            gameOver = false;
-        }
     }
 }
 
@@ -195,4 +198,11 @@ function detectCollision(a, b) {
         a.y < b.y + b.height &&
         a.y + a.height > b.y;
 }
+
+function showGameOverScreen() {
+    document.getElementById('gameOverScreen').style.display = 'block'; // Show the GAME OVER screen
+    document.getElementById('finalScore').textContent = 'Your final score: ' + score; // Display final score
+    document.getElementById('board').style.display = 'none'; // Optionally hide the game canvas
+}
+
 

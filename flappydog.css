@@ -1,10 +1,11 @@
 #startScreen {
     margin-top: 30px;
+    margin-right: 15px;
     top: 0;
     left: 0;
     width: 896px;
     height: 512px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(38, 39, 56, 0.637);
     position: absolute;
     margin-left: 15px;
 }
@@ -12,7 +13,11 @@
 
 #board {
     margin-top: 30px;
-    background-image: url(back3.png);
+    background-image: url(back4.png);
+}
+
+.coloring {
+   background-color: rgba(0, 140, 255, 0.1);
 }
 
 .jersey-15-regular {
@@ -20,23 +25,3 @@
     font-weight: 400;
     font-style: normal;
   }
-
-/* animations */
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-#dogImage1 {
-    cursor: pointer;
-    transition: transform 3s ease-in-out; /* Smooth transition for other transformations */
-}
-
-#dogImage1.rotated {
-    transform: rotate(360deg); /* Direct transformation, removed animation for clarity */
-}
-
