@@ -4,4 +4,4 @@ Tap space, button up or X to make the dog rise. If you stop clicking, the dog wi
 
 Link to github: https://github.com/marinkaavia/flappy_cubic
 
-Link to web-site to try a game online: file:///Users/marinkaavia/Desktop/flappy_cubic%202/index.html
+Link to web-site to try a game online: [file:///Users/marinkaavia/Desktop/flappy_cubic%202/index.html](https://ornate-starship-099837.netlify.app)
